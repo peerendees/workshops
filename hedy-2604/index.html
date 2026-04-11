@@ -168,7 +168,9 @@ h1, h2, h3 {
   text-transform: uppercase;
   letter-spacing: 0.06em;
   font-weight: 400;
+  color: var(--text);
 }
+.accent { color: var(--copper); }
 
 /* Hero */
 .hero {
@@ -180,10 +182,9 @@ h1, h2, h3 {
 }
 
 .hero h1 {
-  font-size: clamp(3.5rem, 8vw, 6rem);
-  color: var(--copper);
-  line-height: 0.95;
-  margin-bottom: 2rem;
+  font-size: clamp(3.5rem, 9vw, 7rem);
+  line-height: 0.9;
+  margin-bottom: 2.5rem;
 }
 
 .hero-sub {
@@ -227,9 +228,8 @@ h1, h2, h3 {
 
 /* Content Sections */
 .section-heading {
-  font-size: clamp(2.2rem, 5vw, 3.5rem);
-  color: var(--copper);
-  margin-bottom: 2rem;
+  font-size: clamp(2.5rem, 6vw, 4.5rem);
+  margin-bottom: 2.5rem;
 }
 
 .section-text {
@@ -239,10 +239,9 @@ h1, h2, h3 {
 
 /* Problem */
 .problem-headline {
-  font-size: clamp(2.5rem, 5.5vw, 4rem);
-  color: var(--copper);
-  line-height: 1.1;
-  margin-bottom: 2rem;
+  font-size: clamp(2.5rem, 6vw, 5rem);
+  line-height: 1;
+  margin-bottom: 2.5rem;
 }
 
 /* Session Cards */
@@ -465,7 +464,7 @@ footer {
 
 /* Responsive */
 @media (max-width: 640px) {
-  .hero h1 { font-size: clamp(2.2rem, 10vw, 3.5rem); }
+  .hero h1 { font-size: clamp(2.5rem, 10vw, 4rem); }
   .details-grid { grid-template-columns: 1fr; }
   .about-content { flex-direction: column; }
   section { padding: 3rem 1.5rem; }
@@ -503,7 +502,7 @@ footer {
 
 <!-- Block 1: Hero -->
 <section class="hero">
-  <h1>Hedy<br>Experience<br>Sprint</h1>
+  <h1><span class="accent">Hedy</span><br>Experience<br>Sprint</h1>
   <p class="hero-sub">Lerne, Hedy so einzurichten, dass es in Deinem Arbeitsalltag verschwindet – und trotzdem alles Wichtige festhält.</p>
   <p class="hero-meta">28.–29. April 2026 <span>·</span> Online <span>·</span> 2×90 Minuten</p>
   <a href="#buchen" class="cta-button">Jetzt Platz sichern</a>
