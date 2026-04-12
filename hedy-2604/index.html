@@ -142,7 +142,7 @@ nav {
 section {
   max-width: 800px;
   margin: 0 auto;
-  padding: 5rem 2rem;
+  padding: 6rem 2rem;
 }
 
 .section-divider {
@@ -150,6 +150,24 @@ section {
   height: 1px;
   background: var(--copper);
   margin-bottom: 2rem;
+}
+
+.sec-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.7rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--copper);
+  margin-bottom: 3rem;
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+.sec-label::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(to right, var(--border2), transparent);
 }
 
 /* Vertical accent line */
@@ -182,8 +200,8 @@ h1, h2, h3 {
 }
 
 .hero h1 {
-  font-size: clamp(3.5rem, 9vw, 7rem);
-  line-height: 0.9;
+  font-size: clamp(3rem, 8vw, 5.5rem);
+  line-height: 1;
   margin-bottom: 2.5rem;
 }
 
@@ -209,6 +227,7 @@ h1, h2, h3 {
 
 .cta-button {
   display: inline-block;
+  align-self: flex-start;
   font-family: 'Bebas Neue', sans-serif;
   font-size: 1.3rem;
   letter-spacing: 0.1em;
@@ -225,10 +244,12 @@ h1, h2, h3 {
   background: transparent;
   color: var(--copper);
 }
+.cta-section .cta-button { align-self: center; }
 
 /* Content Sections */
 .section-heading {
-  font-size: clamp(2.5rem, 6vw, 4.5rem);
+  font-size: clamp(2rem, 4vw, 3rem);
+  line-height: 1.15;
   margin-bottom: 2.5rem;
 }
 
@@ -239,8 +260,8 @@ h1, h2, h3 {
 
 /* Problem */
 .problem-headline {
-  font-size: clamp(2.5rem, 6vw, 5rem);
-  line-height: 1;
+  font-size: clamp(2rem, 4.5vw, 3.5rem);
+  line-height: 1.15;
   margin-bottom: 2.5rem;
 }
 
@@ -464,7 +485,7 @@ footer {
 
 /* Responsive */
 @media (max-width: 640px) {
-  .hero h1 { font-size: clamp(2.5rem, 10vw, 4rem); }
+  .hero h1 { font-size: clamp(2.2rem, 10vw, 3.5rem); }
   .details-grid { grid-template-columns: 1fr; }
   .about-content { flex-direction: column; }
   section { padding: 3rem 1.5rem; }
@@ -491,13 +512,10 @@ footer {
     <div class="plus-mark"></div>
     <span>BERENT.AI</span>
   </a>
-  <div style="display:flex;align-items:center;gap:0.8rem;">
-    <a href="#buchen" class="nav-cta">Platz sichern</a>
-    <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Farbschema wechseln">
+  <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Farbschema wechseln">
       <svg class="icon-moon hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646Z"/></svg>
       <svg class="icon-sun" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v2.25m6.364.386l-1.591 1.591M21 12h-2.25m-.386 6.364l-1.591-1.591M12 18.75V21m-4.773-4.227l-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z"/></svg>
-    </button>
-  </div>
+  </button>
 </nav>
 
 <!-- Block 1: Hero -->
@@ -510,7 +528,7 @@ footer {
 
 <!-- Block 2: Problem -->
 <section>
-  <div class="section-divider"></div>
+  <div class="sec-label">01 — Problem</div>
   <h2 class="problem-headline">Deine Gespräche sind wertvoll.<br>Deine Nachbereitung nicht.</h2>
   <div class="accent-border">
   <p class="section-text">Du führst Coaching-Sessions, Beratungsgespräche, Strategie-Meetings – und danach? Hektische Notizen, halbe Erinnerungen, verlorene Details. Oder Du investierst nochmals 60 Minuten pro Gespräch in die Dokumentation – bei Gruppen-Meetings auch mal 90 Minuten, die sich anfühlen wie das Meeting selbst.</p>
@@ -519,7 +537,7 @@ footer {
 
 <!-- Block 3: Lösung -->
 <section>
-  <div class="section-divider"></div>
+  <div class="sec-label">02 — Lösung</div>
   <h2 class="section-heading">Was wäre, würde Dein Assistent einfach zuhören… und mitdenken?</h2>
   <div class="accent-border">
   <p class="section-text">Ambient AI arbeitet im Hintergrund: verfügbar bei Bedarf, still wenn nicht benötigt, beobachtbar und kontrollierbar. Hedy ist genau das: ein KI-Assistent, der in Echtzeit mitdenkt, während Du Dich auf Dein Gegenüber konzentrierst. Keine nachträgliche Transkription. Keine Nacharbeit. Sondern Unterstützung im Moment, in dem sie zählt.</p>
@@ -528,7 +546,7 @@ footer {
 
 <!-- Block 4: Workshop-Inhalt -->
 <section>
-  <div class="section-divider"></div>
+  <div class="sec-label">03 — Workshop</div>
   <h2 class="section-heading">Was Dich erwartet</h2>
   
   <div class="session-card">
@@ -546,7 +564,7 @@ footer {
 
 <!-- Block 5: Für wen -->
 <section>
-  <div class="section-divider"></div>
+  <div class="sec-label">04 — Zielgruppe</div>
   <h2 class="section-heading">Für wen ist dieser Workshop?</h2>
   <div class="accent-border">
   <p class="section-text">Für Selbstständige und Professionals, die regelmäßig wichtige Gespräche führen. Du nutzt bereits KI-Tools und willst Hedy gezielt in Deinen Arbeitsalltag integrieren – nicht als weiteres Tool, sondern als Assistent, der im Hintergrund mitläuft.</p>
@@ -561,7 +579,7 @@ footer {
 
 <!-- Block 6: Über mich -->
 <section>
-  <div class="section-divider"></div>
+  <div class="sec-label">05 — Trainer</div>
   <h2 class="section-heading">Wer Dich begleitet</h2>
   <div class="about-content accent-border">
     <div class="about-badge">Zertifizierter<br>Hedy<br>Trainer</div>
@@ -571,7 +589,7 @@ footer {
 
 <!-- Block 7: Details -->
 <section>
-  <div class="section-divider"></div>
+  <div class="sec-label">06 — Details</div>
   <h2 class="section-heading">Auf einen Blick</h2>
   <div class="details-grid">
     <div class="detail-item">
@@ -591,12 +609,17 @@ footer {
       <p class="detail-value price">149,00 €</p>
       <p class="price-note">zzgl. 19 % MwSt.</p>
     </div>
+    <div class="detail-item" style="grid-column: 1 / -1;">
+      <p class="detail-label">Voraussetzung</p>
+      <p class="detail-value">Hedy Pro Account (Jahresabo oder Lifetime-Lizenz)</p>
+      <p class="price-note">Den Link zum vergünstigten Jahresabo erhältst Du mit der Buchungsbestätigung.</p>
+    </div>
   </div>
 </section>
 
 <!-- Block 8: Vertrauenssignale -->
 <section>
-  <div class="section-divider"></div>
+  <div class="sec-label">07 — Vertrauen</div>
   <h2 class="section-heading">Gut zu wissen</h2>
   
   <div class="trust-item">
@@ -648,7 +671,7 @@ footer {
 
 <!-- Block 10: FAQ -->
 <section>
-  <div class="section-divider"></div>
+  <div class="sec-label">08 — FAQ</div>
   <h2 class="section-heading">Häufige Fragen</h2>
   
   <div class="faq-item">
@@ -657,8 +680,8 @@ footer {
   </div>
   
   <div class="faq-item">
-    <p class="faq-question">Brauche ich einen Hedy Pro Account?</p>
-    <p class="faq-answer">Nein. Der kostenlose Account reicht für den Workshop. Ob sich Pro für Dich lohnt, wirst Du im Workshop selbst herausfinden.</p>
+    <p class="faq-question">Welchen Hedy Account brauche ich?</p>
+    <p class="faq-answer">Für den Workshop ist ein Hedy Pro Account erforderlich (Jahresabo oder Lifetime-Lizenz). Mit der Buchungsbestätigung erhältst Du einen Link zum vergünstigten Jahresabo. Falls Du die Lifetime-Lizenz in Betracht ziehst, stehe ich Dir gern für einen kurzen persönlichen Austausch zur Verfügung.</p>
   </div>
   
   <div class="faq-item">
