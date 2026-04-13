@@ -376,30 +376,169 @@ h1, h2, h3 {
   align-self: flex-start;
 }
 
-.cert-image--main,
-.cert-image--qr {
+.cert-image--main {
   display: block;
   box-sizing: border-box;
   flex: 0 0 auto;
-  background-size: contain;
-  background-repeat: no-repeat;
-  pointer-events: none;
-  user-select: none;
-  -webkit-user-drag: none;
-}
-
-.cert-image--main {
   width: 100%;
   height: clamp(11rem, 28vw, 13.5rem);
   background-image: url('../assets/images/Hedy-Certified-Trainer-e5f6-1.png');
+  background-size: contain;
+  background-repeat: no-repeat;
   background-position: center right;
+  user-select: none;
+  -webkit-user-drag: none;
+  filter: brightness(0.7) saturate(0.6);
+  opacity: 0.85;
+  transition: filter 0.3s, opacity 0.3s;
+}
+.cert-image--main:hover {
+  filter: brightness(1) saturate(1);
+  opacity: 1;
 }
 
-.cert-image--qr {
-  width: 3.5rem;
-  height: 3.5rem;
-  background-image: url('../assets/images/Hedy-Certified-Trainer-e5f6-2.png');
+:root[data-theme="light"] .cert-image--main {
+  filter: brightness(0.95) saturate(0.5);
+  opacity: 0.85;
+}
+:root[data-theme="light"] .cert-image--main:hover {
+  filter: brightness(1) saturate(1);
+  opacity: 1;
+}
+
+.cert-qr-trigger {
+  display: block;
+  box-sizing: border-box;
+  flex: 0 0 auto;
+  width: 2.25rem;
+  height: 2.25rem;
+  max-width: 2.5rem;
+  max-height: 2.5rem;
+  margin: 0;
+  padding: 0;
+  border: 1px solid transparent;
+  border-radius: 6px;
+  background-color: transparent;
+  background-image: url('../assets/images/Hedy-Certified-Trainer-e5f6-2-QR.png');
+  background-size: contain;
+  background-repeat: no-repeat;
   background-position: center;
+  cursor: pointer;
+  user-select: none;
+  -webkit-user-drag: none;
+  filter: brightness(0.7) saturate(0.6);
+  opacity: 0.85;
+  transition: filter 0.3s, opacity 0.3s, border-color 0.2s;
+}
+.cert-qr-trigger:hover {
+  filter: brightness(1) saturate(1);
+  opacity: 1;
+  border-color: var(--copper);
+}
+:root[data-theme="light"] .cert-qr-trigger {
+  filter: brightness(0.95) saturate(0.5);
+  opacity: 0.85;
+}
+:root[data-theme="light"] .cert-qr-trigger:hover {
+  filter: brightness(1) saturate(1);
+  opacity: 1;
+  border-color: var(--copper);
+}
+
+/* Modal: Verifizierung (volle Rückseite e5f6-2) */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.cert-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 2500;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+.cert-modal.is-open {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+.cert-modal__backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(10, 10, 12, 0.82);
+  cursor: pointer;
+  border: none;
+  padding: 0;
+  margin: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+:root[data-theme="light"] .cert-modal__backdrop {
+  background: rgba(42, 33, 21, 0.55);
+}
+.cert-modal__panel {
+  position: relative;
+  z-index: 1;
+  max-width: min(92vw, 36rem);
+  max-height: min(88vh, 52rem);
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: auto;
+}
+.cert-modal__close {
+  position: absolute;
+  top: -0.25rem;
+  right: -0.25rem;
+  z-index: 2;
+  width: 2.25rem;
+  height: 2.25rem;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  background: var(--bg2);
+  color: var(--muted2);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: auto;
+  transition: border-color 0.2s, color 0.2s, background 0.2s;
+}
+.cert-modal__close:hover {
+  border-color: var(--copper);
+  color: var(--copper);
+}
+.cert-modal__image {
+  width: min(88vw, 28rem);
+  height: min(82vh, 38rem);
+  max-width: 100%;
+  background-image: url('../assets/images/Hedy-Certified-Trainer-e5f6-2.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  pointer-events: none;
+  user-select: none;
+  -webkit-user-drag: none;
 }
 
 /* Audience */
@@ -509,6 +648,15 @@ footer {
 .footer-links a:hover { color: var(--copper); }
 
 /* Responsive */
+@media (max-width: 900px) {
+  .about-cert-wrap {
+    width: clamp(9rem, 28vw, 12.5rem);
+  }
+  .cert-image--main {
+    height: clamp(10rem, 36vw, 12rem);
+  }
+}
+
 @media (max-width: 640px) {
   .hero h1 { font-size: clamp(2.2rem, 10vw, 3.5rem); }
   .details-grid { grid-template-columns: 1fr; }
@@ -526,9 +674,11 @@ footer {
     height: 12.5rem;
     background-position: center;
   }
-  .cert-image--qr {
-    width: 3.75rem;
-    height: 3.75rem;
+  .cert-qr-trigger {
+    width: 2rem;
+    height: 2rem;
+    max-width: 2.5rem;
+    max-height: 2.5rem;
   }
   section { padding: 4rem 1.5rem; }
   .cta-section { padding: 4rem 1.5rem; }
@@ -630,7 +780,7 @@ footer {
     </div>
     <div class="about-cert-wrap" oncontextmenu="return false">
       <div class="cert-image--main" role="img" aria-label="Zertifikat Hedy Certified Trainer"></div>
-      <div class="cert-image--qr" role="img" aria-label="QR-Code zur Verifizierung des Zertifikats"></div>
+      <button type="button" class="cert-qr-trigger" id="cert-qr-trigger" aria-haspopup="dialog" aria-expanded="false" aria-controls="cert-verify-modal" aria-label="Verifizierung anzeigen" title="Verifizierung anzeigen"></button>
     </div>
   </div>
 </section>
@@ -745,6 +895,15 @@ footer {
   </div>
 </footer>
 
+<div id="cert-verify-modal" class="cert-modal" aria-hidden="true">
+  <button type="button" class="cert-modal__backdrop" id="cert-modal-backdrop" aria-label="Dialog schließen"></button>
+  <div class="cert-modal__panel" role="dialog" aria-modal="true" aria-labelledby="cert-verify-title" oncontextmenu="return false">
+    <button type="button" class="cert-modal__close" id="cert-modal-close" aria-label="Schließen">×</button>
+    <h2 id="cert-verify-title" class="sr-only">Zertifikatsverifizierung</h2>
+    <div class="cert-modal__image" role="img" aria-label="Rückseite des Zertifikats mit QR-Code"></div>
+  </div>
+</div>
+
 <script>
 const THEME_STORAGE_KEY = 'berent-theme';
 const root = document.documentElement;
@@ -775,6 +934,48 @@ if (toggle) {
     applyTheme(next);
   });
 }
+
+const certModal = document.getElementById('cert-verify-modal');
+const certQrTrigger = document.getElementById('cert-qr-trigger');
+const certModalBackdrop = document.getElementById('cert-modal-backdrop');
+const certModalClose = document.getElementById('cert-modal-close');
+let certModalPreviousFocus = null;
+
+function openCertModal() {
+  if (!certModal || !certQrTrigger) return;
+  certModalPreviousFocus = document.activeElement;
+  certModal.classList.add('is-open');
+  certModal.setAttribute('aria-hidden', 'false');
+  certQrTrigger.setAttribute('aria-expanded', 'true');
+  document.body.style.overflow = 'hidden';
+  if (certModalClose) certModalClose.focus();
+}
+
+function closeCertModal() {
+  if (!certModal || !certQrTrigger) return;
+  certModal.classList.remove('is-open');
+  certModal.setAttribute('aria-hidden', 'true');
+  certQrTrigger.setAttribute('aria-expanded', 'false');
+  document.body.style.overflow = '';
+  if (certModalPreviousFocus && typeof certModalPreviousFocus.focus === 'function') {
+    certModalPreviousFocus.focus();
+  }
+}
+
+if (certQrTrigger && certModal) {
+  certQrTrigger.addEventListener('click', openCertModal);
+}
+if (certModalBackdrop) {
+  certModalBackdrop.addEventListener('click', closeCertModal);
+}
+if (certModalClose) {
+  certModalClose.addEventListener('click', closeCertModal);
+}
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape' && certModal && certModal.classList.contains('is-open')) {
+    closeCertModal();
+  }
+});
 </script>
 </body>
 </html>
