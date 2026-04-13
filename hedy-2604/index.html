@@ -89,8 +89,8 @@ nav {
 }
 
 .plus-mark {
-  width: 16px;
-  height: 16px;
+  width: 14px;
+  height: 14px;
   position: relative;
   flex-shrink: 0;
 }
@@ -103,19 +103,6 @@ nav {
 }
 .plus-mark::before { width: 2px; height: 100%; left: 50%; top: 0; transform: translateX(-50%); }
 .plus-mark::after { width: 100%; height: 2px; top: 50%; left: 0; transform: translateY(-50%); }
-
-.nav-cta {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 0.75rem;
-  font-weight: 400;
-  color: var(--bg);
-  background: var(--copper);
-  padding: 0.5rem 1.2rem;
-  text-decoration: none;
-  letter-spacing: 0.05em;
-  transition: background 0.3s;
-}
-.nav-cta:hover { background: #c9863a; }
 
 .theme-toggle {
   background: #141417;
@@ -142,7 +129,7 @@ nav {
 section {
   max-width: 800px;
   margin: 0 auto;
-  padding: 6rem 2rem;
+  padding: 7rem 2rem;
 }
 
 .section-divider {
@@ -155,10 +142,11 @@ section {
 .sec-label {
   font-family: 'JetBrains Mono', monospace;
   font-size: 0.7rem;
+  font-weight: 400;
   letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--copper);
-  margin-bottom: 3rem;
+  margin-bottom: 3.5rem;
   display: flex;
   align-items: center;
   gap: 1.5rem;
@@ -170,9 +158,9 @@ section {
   background: linear-gradient(to right, var(--border2), transparent);
 }
 
-/* Vertical accent line */
+/* Vertical accent line (Relaunch: prompt-hint / Kupfer-Dunkel) */
 .accent-border {
-  border-left: 2px solid var(--copper);
+  border-left: 2px solid var(--copper-dk);
   padding-left: 2rem;
 }
 
@@ -216,6 +204,7 @@ h1, h2, h3 {
 .hero-meta {
   font-family: 'JetBrains Mono', monospace;
   font-size: 0.8rem;
+  font-weight: 400;
   color: var(--muted2);
   letter-spacing: 0.06em;
   margin-bottom: 2.5rem;
@@ -227,9 +216,8 @@ h1, h2, h3 {
 
 .cta-button {
   display: inline-block;
-  align-self: flex-start;
   font-family: 'Bebas Neue', sans-serif;
-  font-size: 1.3rem;
+  font-size: 1.25rem;
   letter-spacing: 0.1em;
   text-transform: uppercase;
   text-align: center;
@@ -244,33 +232,37 @@ h1, h2, h3 {
   background: transparent;
   color: var(--copper);
 }
-.cta-section .cta-button { align-self: center; }
+.hero .cta-button,
+.cta-section .cta-button {
+  align-self: center;
+}
 
-/* Content Sections */
+/* Content Sections (H2 an Relaunch-Mobile / schmale Spalte angelehnt) */
 .section-heading {
-  font-size: clamp(2rem, 4vw, 3rem);
-  line-height: 1.15;
-  margin-bottom: 2.5rem;
+  font-size: clamp(1.75rem, 3.8vw, 2.65rem);
+  line-height: 1.18;
+  margin-bottom: 2.25rem;
 }
 
 .section-text {
   font-size: 1.05rem;
-  margin-bottom: 1.5rem;
+  margin-bottom: 2rem;
 }
 
 /* Problem */
 .problem-headline {
-  font-size: clamp(2rem, 4.5vw, 3.5rem);
-  line-height: 1.15;
-  margin-bottom: 2.5rem;
+  font-size: clamp(1.85rem, 4vw, 2.75rem);
+  line-height: 1.18;
+  margin-bottom: 2.25rem;
 }
 
 /* Session Cards */
 .session-card {
   background: var(--card);
   border: 1px solid var(--border);
+  border-left: 2px solid var(--copper-dk);
   padding: 2rem;
-  margin-bottom: 1.5rem;
+  margin-bottom: 2rem;
 }
 
 .session-label {
@@ -283,7 +275,10 @@ h1, h2, h3 {
 }
 
 .session-title {
-  font-size: clamp(1.6rem, 3.5vw, 2.5rem);
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(1.35rem, 3vw, 2rem);
+  line-height: 1.15;
+  font-weight: 400;
   color: var(--gold);
   margin-bottom: 1rem;
 }
@@ -298,12 +293,13 @@ h1, h2, h3 {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 1.5rem;
-  margin-top: 1.5rem;
+  margin-top: 2rem;
 }
 
 .detail-item {
   background: var(--card);
   border: 1px solid var(--border);
+  border-left: 2px solid var(--copper-dk);
   padding: 1.5rem;
 }
 
@@ -337,11 +333,10 @@ h1, h2, h3 {
 
 /* Trust Signals */
 .trust-item {
-  display: flex;
-  align-items: flex-start;
-  gap: 1rem;
-  margin-bottom: 1.5rem;
-  padding-bottom: 1.5rem;
+  border-left: 2px solid var(--copper-dk);
+  padding-left: 1.5rem;
+  margin-bottom: 2rem;
+  padding-bottom: 2rem;
   border-bottom: 1px solid var(--border);
 }
 
@@ -392,7 +387,7 @@ h1, h2, h3 {
   display: flex;
   flex-wrap: wrap;
   gap: 0.6rem;
-  margin-top: 1rem;
+  margin-top: 1.75rem;
 }
 
 .audience-tag {
@@ -407,9 +402,16 @@ h1, h2, h3 {
 /* CTA Section */
 .cta-section {
   text-align: center;
-  padding: 6rem 2rem;
+  padding: 7rem 2rem;
   border-top: 1px solid var(--border);
   border-bottom: 1px solid var(--border);
+}
+.cta-section .sec-label {
+  justify-content: center;
+  margin-bottom: 2rem;
+}
+.cta-section .sec-label::after {
+  display: none;
 }
 
 .cta-headline {
@@ -436,6 +438,9 @@ h1, h2, h3 {
 .faq-answer {
   font-size: 0.95rem;
   line-height: 1.8;
+}
+.faq-answer p + p {
+  margin-top: 1rem;
 }
 
 /* Footer */
@@ -488,7 +493,8 @@ footer {
   .hero h1 { font-size: clamp(2.2rem, 10vw, 3.5rem); }
   .details-grid { grid-template-columns: 1fr; }
   .about-content { flex-direction: column; }
-  section { padding: 3rem 1.5rem; }
+  section { padding: 4rem 1.5rem; }
+  .cta-section { padding: 4rem 1.5rem; }
   nav { padding: 1rem 1.2rem; }
 }
 
@@ -611,8 +617,8 @@ footer {
     </div>
     <div class="detail-item" style="grid-column: 1 / -1;">
       <p class="detail-label">Voraussetzung</p>
-      <p class="detail-value">Hedy Pro Account (Jahresabo oder Lifetime-Lizenz)</p>
-      <p class="price-note">Den Link zum vergünstigten Jahresabo erhältst Du mit der Buchungsbestätigung.</p>
+      <p class="detail-value">Hedy Account (Free oder Pro)</p>
+      <p class="price-note">Wer mehrere Gesprächskontexte verwalten möchte, benötigt ein Pro-Abo.</p>
     </div>
   </div>
 </section>
@@ -623,55 +629,41 @@ footer {
   <h2 class="section-heading">Gut zu wissen</h2>
   
   <div class="trust-item">
-    <div class="plus-mark" style="margin-top: 0.35rem;"></div>
-    <div>
-      <p class="trust-label">EU-Datenhaltung</p>
-      <p class="trust-text">Hedy Version 3 bietet die Möglichkeit, Daten ausschließlich auf EU-Servern zu verarbeiten – DSGVO-konform.</p>
-    </div>
+    <p class="trust-label">EU-Datenhaltung</p>
+    <p class="trust-text">Hedy Version 3 bietet die Möglichkeit, Daten ausschließlich auf EU-Servern zu verarbeiten – DSGVO-konform.</p>
   </div>
   
   <div class="trust-item">
-    <div class="plus-mark" style="margin-top: 0.35rem;"></div>
-    <div>
-      <p class="trust-label">Kleine Gruppe</p>
-      <p class="trust-text">Maximal 10 Teilnehmer garantieren individuellen Austausch und persönliche Betreuung.</p>
-    </div>
+    <p class="trust-label">Kleine Gruppe</p>
+    <p class="trust-text">Maximal 10 Teilnehmer garantieren individuellen Austausch und persönliche Betreuung.</p>
   </div>
   
   <div class="trust-item">
-    <div class="plus-mark" style="margin-top: 0.35rem;"></div>
-    <div>
-      <p class="trust-label">Aufzeichnung</p>
-      <p class="trust-text">Du erhältst die Workshop-Aufzeichnung im Anschluss, falls Du eine Session verpasst.</p>
-    </div>
+    <p class="trust-label">Aufzeichnung</p>
+    <p class="trust-text">Du erhältst die Workshop-Aufzeichnung im Anschluss, falls Du eine Session verpasst.</p>
   </div>
   
   <div class="trust-item">
-    <div class="plus-mark" style="margin-top: 0.35rem;"></div>
-    <div>
-      <p class="trust-label">Praxisorientiert</p>
-      <p class="trust-text">Keine Frontalpräsentation – Du arbeitest im Workshop direkt mit Hedy an Deinen eigenen Anwendungsfällen.</p>
-    </div>
+    <p class="trust-label">Praxisorientiert</p>
+    <p class="trust-text">Keine Frontalpräsentation – Du arbeitest im Workshop direkt mit Hedy an Deinen eigenen Anwendungsfällen.</p>
   </div>
   
   <div class="trust-item">
-    <div class="plus-mark" style="margin-top: 0.35rem;"></div>
-    <div>
-      <p class="trust-label">Geld-zurück-Garantie</p>
-      <p class="trust-text">Du bekommst Dein Geld zurück – ohne Wenn und Aber.</p>
-    </div>
+    <p class="trust-label">Geld-zurück-Garantie</p>
+    <p class="trust-text">Du bekommst Dein Geld zurück – ohne Wenn und Aber.</p>
   </div>
 </section>
 
 <!-- Block 9: CTA -->
 <section class="cta-section" id="buchen">
+  <div class="sec-label">09 — Buchen</div>
   <p class="cta-headline">Lediglich 10 Plätze. Sichere Dir Deinen jetzt.</p>
   <a href="#" class="cta-button">Jetzt Platz sichern</a>
 </section>
 
 <!-- Block 10: FAQ -->
 <section>
-  <div class="sec-label">08 — FAQ</div>
+  <div class="sec-label">10 — FAQ</div>
   <h2 class="section-heading">Häufige Fragen</h2>
   
   <div class="faq-item">
@@ -681,7 +673,10 @@ footer {
   
   <div class="faq-item">
     <p class="faq-question">Welchen Hedy Account brauche ich?</p>
-    <p class="faq-answer">Für den Workshop ist ein Hedy Pro Account erforderlich (Jahresabo oder Lifetime-Lizenz). Mit der Buchungsbestätigung erhältst Du einen Link zum vergünstigten Jahresabo. Falls Du die Lifetime-Lizenz in Betracht ziehst, stehe ich Dir gern für einen kurzen persönlichen Austausch zur Verfügung.</p>
+    <div class="faq-answer">
+      <p>Mit dem kostenlosen Account kannst Du am Workshop teilnehmen und einen Gesprächskontext bearbeiten. Sobald Du mehrere Kontexte verwalten möchtest, wird ein Pro-Abo erforderlich (Jahresabo oder Lifetime-Lizenz).</p>
+      <p>Mit der Buchungsbestätigung erhältst Du einen Link zum vergünstigten Jahresabo. Falls Du die Lifetime-Lizenz in Betracht ziehst, stehe ich Dir gern für einen kurzen persönlichen Austausch zur Verfügung.</p>
+    </div>
   </div>
   
   <div class="faq-item">
