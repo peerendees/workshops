@@ -317,13 +317,6 @@ h1, h2, h3 {
   color: var(--text);
 }
 
-.detail-value.price {
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: 2rem;
-  color: var(--copper);
-  letter-spacing: 0.04em;
-}
-
 .price-note {
   font-family: 'JetBrains Mono', monospace;
   font-size: 0.7rem;
@@ -362,24 +355,47 @@ h1, h2, h3 {
 .about-content {
   display: flex;
   gap: 2rem;
-  align-items: flex-start;
+  align-items: stretch;
 }
 
-.about-badge {
+.about-text {
+  flex: 1;
+  min-width: 0;
+}
+
+.about-cert-wrap {
   flex-shrink: 0;
-  width: 80px;
-  height: 80px;
-  border: 2px solid var(--copper);
+  width: min(13.5rem, 36vw);
   display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: center;
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: 0.65rem;
-  color: var(--copper);
-  text-align: center;
-  letter-spacing: 0.06em;
-  line-height: 1.3;
-  padding: 0.5rem;
+  gap: 0.65rem;
+  align-self: stretch;
+}
+
+.cert-image--main,
+.cert-image--qr {
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  pointer-events: none;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+.cert-image--main {
+  flex: 1;
+  width: 100%;
+  min-height: 8rem;
+  background-image: url('assets/images/Hedy-Certified-Trainer-e5f6-1.png');
+  background-position: center right;
+}
+
+.cert-image--qr {
+  width: 3.25rem;
+  height: 3.25rem;
+  flex-shrink: 0;
+  background-image: url('assets/images/Hedy-Certified-Trainer-e5f6-2.png');
 }
 
 /* Audience */
@@ -492,7 +508,18 @@ footer {
 @media (max-width: 640px) {
   .hero h1 { font-size: clamp(2.2rem, 10vw, 3.5rem); }
   .details-grid { grid-template-columns: 1fr; }
-  .about-content { flex-direction: column; }
+  .about-content { flex-direction: column; align-items: stretch; }
+  .about-cert-wrap {
+    width: 100%;
+    max-width: 15rem;
+    margin-inline: auto;
+    flex-direction: column;
+    align-self: center;
+  }
+  .cert-image--main {
+    min-height: 10rem;
+    background-position: center;
+  }
   section { padding: 4rem 1.5rem; }
   .cta-section { padding: 4rem 1.5rem; }
   nav { padding: 1rem 1.2rem; }
@@ -588,8 +615,13 @@ footer {
   <div class="sec-label">05 — Trainer</div>
   <h2 class="section-heading">Wer Dich begleitet</h2>
   <div class="about-content accent-border">
-    <div class="about-badge">Zertifizierter<br>Hedy<br>Trainer</div>
-    <p class="section-text">Marcus Kunkel – Softwareentwickler, systemischer Coach und einer der ersten 25 zertifizierten Hedy-Trainer weltweit. Ich bringe zusammen, was selten in einer Person steckt: technische Tiefe, didaktische Kompetenz und ein systemisches Verständnis dafür, wie Technologie in bestehende Arbeitsweisen passt – ohne sie zu überstülpen.</p>
+    <div class="about-text">
+      <p class="section-text">Marcus Kunkel – Softwareentwickler, systemischer Coach und einer der ersten 25 zertifizierten Hedy-Trainer weltweit. Ich bringe zusammen, was selten in einer Person steckt: technische Tiefe, didaktische Kompetenz und ein systemisches Verständnis dafür, wie Technologie in bestehende Arbeitsweisen passt – und darin unsichtbar wird.</p>
+    </div>
+    <div class="about-cert-wrap" oncontextmenu="return false">
+      <div class="cert-image--main" role="img" aria-label="Zertifikat Hedy Certified Trainer"></div>
+      <div class="cert-image--qr" role="img" aria-label="QR-Code zur Verifizierung des Zertifikats"></div>
+    </div>
   </div>
 </section>
 
@@ -612,13 +644,13 @@ footer {
     </div>
     <div class="detail-item">
       <p class="detail-label">Preis</p>
-      <p class="detail-value price">149,00 €</p>
-      <p class="price-note">zzgl. 19 % MwSt.</p>
+      <p class="detail-value">149,00 €</p>
+      <p class="price-note">zzgl. 19,0 % MwSt.</p>
     </div>
     <div class="detail-item" style="grid-column: 1 / -1;">
       <p class="detail-label">Voraussetzung</p>
       <p class="detail-value">Hedy Account (Free oder Pro)</p>
-      <p class="price-note">Wer mehrere Gesprächskontexte verwalten möchte, benötigt ein Pro-Abo.</p>
+      <p class="price-note">Wer mehrere Gesprächskontexte verwalten möchte, benötigt ein Pro-Abonnement.</p>
     </div>
   </div>
 </section>
@@ -674,8 +706,8 @@ footer {
   <div class="faq-item">
     <p class="faq-question">Welchen Hedy Account brauche ich?</p>
     <div class="faq-answer">
-      <p>Mit dem kostenlosen Account kannst Du am Workshop teilnehmen und einen Gesprächskontext bearbeiten. Sobald Du mehrere Kontexte verwalten möchtest, wird ein Pro-Abo erforderlich (Jahresabo oder Lifetime-Lizenz).</p>
-      <p>Mit der Buchungsbestätigung erhältst Du einen Link zum vergünstigten Jahresabo. Falls Du die Lifetime-Lizenz in Betracht ziehst, stehe ich Dir gern für einen kurzen persönlichen Austausch zur Verfügung.</p>
+      <p>Mit dem kostenlosen Account kannst Du am Workshop teilnehmen und einen Gesprächskontext bearbeiten. Sobald Du mehrere Kontexte verwalten möchtest, wird ein Pro-Abonnement erforderlich (Jahresabonnement oder Lifetime-Lizenz).</p>
+      <p>Mit der Buchungsbestätigung erhältst Du einen Link zum vergünstigten Jahresabonnement. Falls Du die Lifetime-Lizenz in Betracht ziehst, stehe ich Dir gern für einen kurzen persönlichen Austausch zur Verfügung.</p>
     </div>
   </div>
   
