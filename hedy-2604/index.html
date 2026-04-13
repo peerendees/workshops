@@ -376,6 +376,13 @@ h1, h2, h3 {
   align-self: flex-start;
 }
 
+.about-cert-qr-row {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
 .cert-image--main {
   display: block;
   box-sizing: border-box;
@@ -780,7 +787,9 @@ footer {
     </div>
     <div class="about-cert-wrap" oncontextmenu="return false">
       <div class="cert-image--main" role="img" aria-label="Zertifikat Hedy Certified Trainer"></div>
-      <button type="button" class="cert-qr-trigger" id="cert-qr-trigger" aria-haspopup="dialog" aria-expanded="false" aria-controls="cert-verify-modal" aria-label="Verifizierung anzeigen" title="Verifizierung anzeigen"></button>
+      <div class="about-cert-qr-row">
+        <button type="button" class="cert-qr-trigger" id="cert-qr-trigger" aria-haspopup="dialog" aria-expanded="false" aria-controls="cert-verify-modal" aria-label="Validierung anzeigen" title="Validierung anzeigen"></button>
+      </div>
     </div>
   </div>
 </section>
