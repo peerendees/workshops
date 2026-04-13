@@ -354,48 +354,52 @@ h1, h2, h3 {
 /* About */
 .about-content {
   display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
   gap: 2rem;
-  align-items: stretch;
+  align-items: flex-start;
 }
 
 .about-text {
-  flex: 1;
+  flex: 1 1 0;
   min-width: 0;
 }
 
+/* Feste Maße: leere Background-Divs dürfen nicht per flex:1 kollabieren */
 .about-cert-wrap {
-  flex-shrink: 0;
-  width: min(13.5rem, 36vw);
+  flex: 0 0 auto;
+  width: clamp(10rem, 32vw, 14rem);
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 0.65rem;
-  align-self: stretch;
+  gap: 0.75rem;
+  align-self: flex-start;
 }
 
 .cert-image--main,
 .cert-image--qr {
+  display: block;
+  box-sizing: border-box;
+  flex: 0 0 auto;
   background-size: contain;
   background-repeat: no-repeat;
-  background-position: center;
   pointer-events: none;
   user-select: none;
   -webkit-user-drag: none;
 }
 
 .cert-image--main {
-  flex: 1;
   width: 100%;
-  min-height: 8rem;
+  height: clamp(11rem, 28vw, 13.5rem);
   background-image: url('assets/images/Hedy-Certified-Trainer-e5f6-1.png');
   background-position: center right;
 }
 
 .cert-image--qr {
-  width: 3.25rem;
-  height: 3.25rem;
-  flex-shrink: 0;
+  width: 3.5rem;
+  height: 3.5rem;
   background-image: url('assets/images/Hedy-Certified-Trainer-e5f6-2.png');
+  background-position: center;
 }
 
 /* Audience */
@@ -508,17 +512,23 @@ footer {
 @media (max-width: 640px) {
   .hero h1 { font-size: clamp(2.2rem, 10vw, 3.5rem); }
   .details-grid { grid-template-columns: 1fr; }
-  .about-content { flex-direction: column; align-items: stretch; }
+  .about-content {
+    flex-direction: column;
+    align-items: stretch;
+  }
   .about-cert-wrap {
     width: 100%;
-    max-width: 15rem;
+    max-width: 16rem;
     margin-inline: auto;
-    flex-direction: column;
     align-self: center;
   }
   .cert-image--main {
-    min-height: 10rem;
+    height: 12.5rem;
     background-position: center;
+  }
+  .cert-image--qr {
+    width: 3.75rem;
+    height: 3.75rem;
   }
   section { padding: 4rem 1.5rem; }
   .cta-section { padding: 4rem 1.5rem; }
