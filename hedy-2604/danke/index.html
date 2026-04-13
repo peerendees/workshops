@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Du bist dabei! – Hedy Experience Sprint | BERENT.AI</title>
+<title>Du bist dabei – Hedy Experience Sprint | BERENT.AI</title>
 <style>
 @font-face { font-family:'Bebas Neue'; src:url(../../assets/fonts/bebas-neue.woff2) format('woff2'); font-weight:400; font-display:swap; }
 @font-face { font-family:'Lora'; src:url(../../assets/fonts/lora-300.woff2) format('woff2'); font-weight:300; font-display:swap; }
@@ -118,7 +118,13 @@ h1 {
 
 .main .message {
   font-size: 1.15rem; line-height: 1.85;
-  max-width: 600px; margin-bottom: 3rem;
+  max-width: 600px;
+}
+.main .message:first-of-type {
+  margin-bottom: 1.25rem;
+}
+.main .message + .message {
+  margin-bottom: 3rem;
 }
 
 .details-grid {
@@ -175,8 +181,9 @@ footer {
   to { opacity: 1; transform: translateY(0); }
 }
 .main h1 { animation: fadeUp 0.8s ease-out; }
-.main .message { animation: fadeUp 0.8s ease-out 0.15s both; }
-.main .details-grid { animation: fadeUp 0.8s ease-out 0.3s both; }
+.main .message:first-of-type { animation: fadeUp 0.8s ease-out 0.15s both; }
+.main .message + .message { animation: fadeUp 0.8s ease-out 0.28s both; }
+.main .details-grid { animation: fadeUp 0.8s ease-out 0.42s both; }
 </style>
 </head>
 <body>
@@ -194,8 +201,9 @@ footer {
 
 <div class="main">
   <div class="section-divider"></div>
-  <h1>Du bist dabei!</h1>
-  <p class="message">Danke für Deine Buchung. Du erhältst in Kürze eine Bestätigungsmail mit allen Details und Deiner Vorbereitungsanleitung. Ich freue mich auf den Workshop mit Dir.</p>
+  <h1>Du bist dabei</h1>
+  <p class="message">Danke für Deine Buchung. Du erhältst in Kürze eine E-Mail zur Bestätigung.</p>
+  <p class="message">Ich freue mich auf den Workshop mit Dir.</p>
 
   <div class="details-grid">
     <div class="detail-item">
