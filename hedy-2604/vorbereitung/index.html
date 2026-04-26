@@ -124,12 +124,27 @@ nav {
 .theme-toggle .hidden { display: none; }
 :root[data-theme="light"] nav { background: rgba(246, 242, 234, 0.92); }
 .nav-right { display: flex; align-items: center; gap: 0.75rem; }
+.kickoff-video-outer {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 5.75rem 2rem 2.5rem;
+  text-align: center;
+}
+.kickoff-video {
+  display: block;
+  width: 100%;
+  max-width: 800px;
+  height: auto;
+  margin: 0 auto;
+  border: 1px solid var(--border);
+  background: var(--card);
+}
 section {
   max-width: 800px;
   margin: 0 auto;
   padding: 7rem 2rem;
 }
-.prep-hero { padding-top: 8rem; }
+.prep-hero { padding: 0 2rem 7rem; }
 .sec-label {
   font-family: 'JetBrains Mono', monospace;
   font-size: 0.7rem;
@@ -350,7 +365,8 @@ footer {
 .footer-links a:hover { color: var(--copper); }
 @media (max-width: 640px) {
   section { padding: 4rem 1.5rem; }
-  .prep-hero { padding-top: 6.5rem; }
+  .kickoff-video-outer { padding: 4.5rem 1.5rem 1.5rem; }
+  .prep-hero { padding: 0 1.5rem 4rem; }
   nav { padding: 1rem 1.2rem; }
 }
 </style>
@@ -370,6 +386,14 @@ footer {
     </button>
   </div>
 </nav>
+
+<div class="kickoff-video-outer">
+  <video class="kickoff-video" controls playsinline preload="metadata" controlsList="nodownload" oncontextmenu="return false" aria-label="Kickoff-Video Hedy Experience Sprint">
+    <source src="https://media.berent.ai/hedy-2604-kickoff-video.mov" type="video/quicktime">
+    <source src="https://media.berent.ai/hedy-2604-kickoff-video.mov" type="video/mp4">
+    Dein Browser unterstützt kein Video.
+  </video>
+</div>
 
 <main>
 <section class="prep-hero">
