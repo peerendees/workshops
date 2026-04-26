@@ -334,27 +334,7 @@ h1, h2 {
   text-align: center;
 }
 #submit-err { text-align: center; margin-top: 0.75rem; }
-#submit-btn:disabled {
-  opacity: 0.5;
-  pointer-events: none;
-  cursor: not-allowed;
-}
-#submit-btn:disabled:hover {
-  background: var(--copper);
-  color: var(--bg);
-  border-color: var(--copper);
-  opacity: 0.5;
-}
-#submit-hint {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 0.65rem;
-  font-weight: 400;
-  color: var(--muted);
-  line-height: 1.5;
-  max-width: 26rem;
-  margin: 0.6rem auto 0;
-  text-align: center;
-}
+#submit-block .cta-button:disabled { opacity: 0.55; cursor: wait; }
 footer {
   padding: 2rem;
   text-align: center;
@@ -556,12 +536,11 @@ footer {
 
   <div id="submit-block">
     <div id="submit-ui">
-      <button type="button" class="cta-button" id="submit-btn" disabled aria-disabled="true">Vorbereitung abschließen</button>
-      <p class="submit-hint" id="submit-hint">Die Vorbereitung wird gerade eingerichtet. Der Fragebogen ist in Kürze verfügbar.</p>
-      <p class="prep-error" id="submit-err" role="status" hidden>Senden fehlgeschlagen. Bitte später erneut versuchen.</p>
+      <button type="button" class="cta-button" id="submit-btn">Vorbereitung abschließen</button>
+      <p class="prep-error" id="submit-err" role="status" hidden>Etwas hat nicht geklappt. Bitte versuche es erneut.</p>
     </div>
     <div id="success-ui" class="prep-success" hidden>
-      <p>Danke – damit kann ich den Workshop gezielt auf Deine Situation zuschneiden. Wir sehen uns am 28. April.</p>
+      <p>Danke – damit kann ich den Workshop gezielt auf Deine Situation zuschneiden. Wir sehen uns am Dienstag.</p>
     </div>
   </div>
 </section>
@@ -605,7 +584,8 @@ if (toggle) {
     applyTheme(next);
   });
 }
-const WEBHOOK_URL = 'https://n8n.srv1098810.hstgr.cloud/webhook/hedy-2604-vorbereitung';
+const SUPABASE_URL = 'https://xuqefeewzdvjhuquciut.supabase.co';
+const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inh1cWVmZWV3emR2amh1cXVjaXV0Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzMyNTQxMjQsImV4cCI6MjA4ODgzMDEyNH0.nTjyVJb4DYkyg-FB0smOhkh6h0p-el-n5UkdCR0mTgE';
 const submitBtn = document.getElementById('submit-btn');
 const submitErr = document.getElementById('submit-err');
 const submitUi = document.getElementById('submit-ui');
@@ -621,6 +601,10 @@ function showError(id) {
 function getCheckedValues(name) {
   return Array.from(document.querySelectorAll('input[name="' + name + '"]:checked')).map((i) => i.value);
 }
+function nullIfEmpty(s) {
+  const t = (s || '').trim();
+  return t.length ? t : null;
+}
 function validate() {
   let ok = true;
   const q1 = getCheckedValues('gespraechstypen');
@@ -632,21 +616,38 @@ function validate() {
   if (!nameVal) { showError('e-name'); ok = false; } else { hideError('e-name'); }
   return ok;
 }
-function buildPayload() {
+function buildSupabaseRow() {
+  const gespraechstypen = getCheckedValues('gespraechstypen').slice();
+  const gSonst = (document.getElementById('gespraechstypen_sonstiges') && document.getElementById('gespraechstypen_sonstiges').value || '').trim();
+  if (gSonst) gespraechstypen.push('sonstiges: ' + gSonst);
+  const notizen_ziel = getCheckedValues('notizen_ziel').slice();
+  const nSonst = (document.getElementById('notizen_sonstiges') && document.getElementById('notizen_sonstiges').value || '').trim();
+  if (nSonst) notizen_ziel.push('sonstiges: ' + nSonst);
   return {
     name: (document.getElementById('name').value || '').trim(),
-    gespraechstypen: getCheckedValues('gespraechstypen'),
-    gespraechstypen_sonstiges: (document.getElementById('gespraechstypen_sonstiges').value || '').trim(),
-    vorbereitung_heute: (document.getElementById('vorbereitung_heute').value || '').trim(),
-    hedy_nutzung: (document.querySelector('input[name="hedy_nutzung"]:checked') || {}).value || '',
-    hedy_erfahrung: (document.getElementById('hedy_erfahrung').value || '').trim(),
-    kontexte_angelegt: (document.querySelector('input[name="kontexte_angelegt"]:checked') || {}).value || '',
-    notizen_ziel: getCheckedValues('notizen_ziel'),
-    notizen_sonstiges: (document.getElementById('notizen_sonstiges').value || '').trim(),
-    betriebssystem: (document.querySelector('input[name="betriebssystem"]:checked') || {}).value || '',
-    datenschutz_fragen: (document.getElementById('datenschutz_fragen').value || '').trim(),
-    submittedAt: new Date().toISOString()
+    gespraechstypen,
+    vorbereitung_heute: nullIfEmpty((document.getElementById('vorbereitung_heute').value || '')),
+    hedy_nutzung: (document.querySelector('input[name="hedy_nutzung"]:checked') || {}).value || null,
+    hedy_erfahrung: nullIfEmpty((document.getElementById('hedy_erfahrung').value || '')),
+    kontexte_angelegt: (document.querySelector('input[name="kontexte_angelegt"]:checked') || {}).value || null,
+    notizen_ziel,
+    betriebssystem: (document.querySelector('input[name="betriebssystem"]:checked') || {}).value || null,
+    datenschutz_fragen: nullIfEmpty((document.getElementById('datenschutz_fragen').value || '')),
+    workshop: 'HEDY2604'
   };
+}
+async function submitToSupabase(row) {
+  const response = await fetch(SUPABASE_URL + '/rest/v1/workshop_vorbereitung', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'apikey': SUPABASE_ANON_KEY,
+      'Authorization': 'Bearer ' + SUPABASE_ANON_KEY,
+      'Prefer': 'return=minimal'
+    },
+    body: JSON.stringify(row)
+  });
+  return response.ok;
 }
 function wireTextareaGrow(el) {
   if (!el) return;
@@ -661,18 +662,13 @@ function wireTextareaGrow(el) {
 document.querySelectorAll('.prep-textarea').forEach(wireTextareaGrow);
 if (submitBtn) {
   submitBtn.addEventListener('click', async () => {
-    if (submitBtn.disabled) return;
     submitErr.hidden = true;
     if (!validate()) { return; }
     submitBtn.disabled = true;
-    const payload = buildPayload();
+    const row = buildSupabaseRow();
     try {
-      const res = await fetch(WEBHOOK_URL, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(payload)
-      });
-      if (!res.ok) throw new Error('http');
+      const ok = await submitToSupabase(row);
+      if (!ok) throw new Error('http');
       submitUi.hidden = true;
       successUi.hidden = false;
     } catch (e) {
