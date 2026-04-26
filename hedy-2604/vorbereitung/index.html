@@ -324,8 +324,13 @@ h1, h2 {
   margin-top: 0.5rem;
 }
 .cta-button:hover { background: transparent; color: var(--copper); }
-.cta-button:disabled { opacity: 0.55; cursor: not-allowed; }
 #submit-block { text-align: center; margin-top: 2.5rem; }
+#submit-block .cta-button:disabled { cursor: wait; }
+#submit-block .cta-button:disabled:hover {
+  background: var(--copper);
+  color: var(--bg);
+  border-color: var(--copper);
+}
 .prep-success {
   font-size: 1.1rem;
   line-height: 1.7;
@@ -334,7 +339,6 @@ h1, h2 {
   text-align: center;
 }
 #submit-err { text-align: center; margin-top: 0.75rem; }
-#submit-block .cta-button:disabled { opacity: 0.55; cursor: wait; }
 footer {
   padding: 2rem;
   text-align: center;
