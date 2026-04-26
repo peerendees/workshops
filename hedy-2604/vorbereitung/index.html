@@ -334,6 +334,27 @@ h1, h2 {
   text-align: center;
 }
 #submit-err { text-align: center; margin-top: 0.75rem; }
+#submit-btn:disabled {
+  opacity: 0.5;
+  pointer-events: none;
+  cursor: not-allowed;
+}
+#submit-btn:disabled:hover {
+  background: var(--copper);
+  color: var(--bg);
+  border-color: var(--copper);
+  opacity: 0.5;
+}
+#submit-hint {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.65rem;
+  font-weight: 400;
+  color: var(--muted);
+  line-height: 1.5;
+  max-width: 26rem;
+  margin: 0.6rem auto 0;
+  text-align: center;
+}
 footer {
   padding: 2rem;
   text-align: center;
@@ -535,7 +556,8 @@ footer {
 
   <div id="submit-block">
     <div id="submit-ui">
-      <button type="button" class="cta-button" id="submit-btn">Vorbereitung abschließen</button>
+      <button type="button" class="cta-button" id="submit-btn" disabled aria-disabled="true">Vorbereitung abschließen</button>
+      <p class="submit-hint" id="submit-hint">Die Vorbereitung wird gerade eingerichtet. Der Fragebogen ist in Kürze verfügbar.</p>
       <p class="prep-error" id="submit-err" role="status" hidden>Senden fehlgeschlagen. Bitte später erneut versuchen.</p>
     </div>
     <div id="success-ui" class="prep-success" hidden>
@@ -639,6 +661,7 @@ function wireTextareaGrow(el) {
 document.querySelectorAll('.prep-textarea').forEach(wireTextareaGrow);
 if (submitBtn) {
   submitBtn.addEventListener('click', async () => {
+    if (submitBtn.disabled) return;
     submitErr.hidden = true;
     if (!validate()) { return; }
     submitBtn.disabled = true;
